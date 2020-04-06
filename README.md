@@ -4,7 +4,7 @@
 VCIOUS_DNS is a DNS spoofing tool, simple yet affective...
 modifies dns response.
 
-# project
+# Project
 
   - VCIOUS_DNS.py
   - iptables.sh
@@ -18,7 +18,7 @@ modifies dns response.
   - netfilterqueue
   - VCIOUS_ARP.py (github.com/vciousvctorious/VCIOUS_ARP)
  
-# usage:
+# Usage:
 
   - SU
   - Modify var.py to specify your target url, ip
