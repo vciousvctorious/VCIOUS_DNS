@@ -21,10 +21,16 @@ modifies dns response.
 # usage:
 
   - SU
+  - Modify var.py to specify your target url, ip
   - Run VCIOUS_ARP.py (READ github.com/vciousvctorious/VCIOUS_ARP)
   - python3 VCIOUS_DNS.py
   - Note: closing the script without ctrl+c might cause networking issues
-  - fix the issue above by running : sh ipflush.sh
+  - Fix the issue above by running : sh ipflush.sh
+
+# NOTES
+
+  - If you are trying to spoof https, keep in mind that browsers\ 
+got a protocol log, so PLEASE configure https in your server
 
 ## Twitter : https://twitter.com/vciousvctorious
 ## GitHub  : https://github.com/vciousvctorious
