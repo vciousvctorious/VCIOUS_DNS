@@ -1,7 +1,7 @@
 from scapy.all import *
 from scapy.layers.inet import IP
 from netfilterqueue import NetfilterQueue
-from var.py import dns
+from var import dns
 import os
 
 os.system("sudo sh iptables.sh")
